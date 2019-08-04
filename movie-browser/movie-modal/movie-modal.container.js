@@ -7,7 +7,6 @@ import { getMovieDetails } from '../movie-browser.actions';
 import * as movieHelpers from '../movie-browser.helpers';
 import Loader from '../../common/loader.component';
 import { calcTime } from '../movie-browser.helpers';
-import { time } from '../movie-browser.helpers';
 
 const styles = {
   dialogContent: (backgroundUrl) => ({

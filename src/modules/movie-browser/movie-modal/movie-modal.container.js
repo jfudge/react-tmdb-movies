@@ -6,6 +6,8 @@ import { closeMovieModal } from './movie-modal.actions';
 import { getMovieDetails } from '../movie-browser.actions';
 import * as movieHelpers from '../movie-browser.helpers';
 import Loader from '../../common/loader.component';
+import { calcTime } from '../movie-browser.helpers';
+import { time } from '../movie-browser.helpers';
 
 const styles = {
   dialogContent: (backgroundUrl) => ({
@@ -31,6 +33,7 @@ class MovieModalContainer extends React.Component {
     const loadingStatus = isLoading ? 'loading' : 'hide';
     const movie = movieHelpers.updateMoviePictureUrls(this.props.movie);
     const genres = (movie && movie.genres) ? movie.genres.map(genre => genre.name).join(', ') : '';
+    const time = (movie.runtime);
 
     return (
       <Dialog
@@ -38,14 +41,13 @@ class MovieModalContainer extends React.Component {
         title={null}
         modal={false}
         open={isOpen}
-        onRequestClose={closeMovieModal}
-      >
+        onRequestClose={closeMovieModal}>
         <Loader isLoading={isLoading}>
           <div style={styles.dialogContent(movie.backdrop_path)}>
             <h2>{movie.title}</h2>
             <h5>{genres}</h5>
             <h6>Tagline: {movie.tagline}</h6>
-            <p>Runtime: {movie.runtime}m</p>
+            <p>Runtime: {calcTime(time)}</p>
             <p>{movie.overview}</p>
             <p>Budget: ${movie.budget}</p>
             <p>Popularity: {movie.popularity}</p>

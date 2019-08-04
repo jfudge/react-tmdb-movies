@@ -15,4 +15,11 @@ export const getMoviesList = (moviesResponse) => {
   return !!moviesResponse ? ([
     ...moviesResponse.results.map(movieResult => updateMoviePictureUrls(movieResult))
   ]) : null;
-}
+};
+
+// Convert time to hours and minutes
+export const calcTime = (time) => {
+  const hours = Math.floor(time / 60);
+  const mins = time % 60;
+  return `${hours}h ${mins}m`;
+};
